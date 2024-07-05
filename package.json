@@ -1,0 +1,31 @@
+{
+  "engines": {
+    "node": ">=16"
+  },
+  "name": "benefit-congress-challenge-ts",
+  "version": "1.0.0",
+  "description": "Backend to register all lectures that we have into a benefits congress.",
+  "main": "dist/index.js",
+  "repository": "git@gitlab.com:cobeerocks/backend/benefit-congress-challenge-ts.git",
+  "author": "Cobee",
+  "dependencies": {
+    "body-parser": "^1.20.0",
+    "express": "^4.18.1",
+    "typescript": "^4.7.4"
+  },
+  "devDependencies": {
+    "@types/body-parser": "^1.19.2",
+    "@types/express": "^4.17.13",
+    "@types/jest": "^28.1.6",
+    "@types/node": "^18.6.4",
+    "@types/supertest": "^2.0.12",
+    "jest": "^28.1.3",
+    "supertest": "^6.2.4",
+    "ts-jest": "^28.0.7"
+  },
+  "scripts": {
+    "test": "jest",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "node dist/index.js"
+  }
+}
