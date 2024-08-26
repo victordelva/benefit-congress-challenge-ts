@@ -1,6 +1,6 @@
 import * as request from 'supertest'
 import {createServer} from './server'
-import {configureDependencies} from "./infrastructure/dependencies";
+import {configureDependencies} from "./infrastructure/config/dependencies";
 
 describe('Lectures Management', () => {
   let server

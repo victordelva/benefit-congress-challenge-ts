@@ -1,6 +1,6 @@
 import * as express from 'express'
 import bodyParser = require('body-parser');
-import {configureRoutes} from "./infrastructure/routes";
+import {configureRoutes} from "./infrastructure/config/routes";
 
 export function createServer(dependencies, done) {
     console.info(`Starting API on 5050...`)

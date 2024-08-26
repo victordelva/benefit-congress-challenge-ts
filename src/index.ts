@@ -1,5 +1,5 @@
 import {createServer} from "./server";
-import {configureDependencies} from "./infrastructure/dependencies";
+import {configureDependencies} from "./infrastructure/config/dependencies";
 
 const dependencies = configureDependencies();
 
