@@ -2,12 +2,14 @@ import LecturesController from './controllers/lectures.controller'
 import LecturesUseCase from './application/usecases/lectures.useCase'
 import * as express from 'express'
 import bodyParser = require('body-parser');
+import {LecturesRepositoryImpl} from "./infrastructure/persistance/LecturesRepository.impl";
 
 export function createServer(done) {
     console.info(`Starting API on 5050...`)
 
     const app = express()
-    const createLectureUseCase = new LecturesUseCase()
+    const lecturesRepository = new LecturesRepositoryImpl([])
+    const createLectureUseCase = new LecturesUseCase(lecturesRepository)
 
     const lecturesController = new LecturesController(createLectureUseCase);
 

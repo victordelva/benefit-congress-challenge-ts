@@ -1,10 +1,13 @@
+import {LecturesRepositoryInterface} from "../../domain/repositories/LecturesRepository.interface";
+
 export default class LecturesUseCase {
-    constructor(private lectures: Record<string, any>[] = []) {}
+    constructor(private lecturesRepository: LecturesRepositoryInterface) {}
 
     createLecture(lecture) {
+        const allLectures = this.lecturesRepository.getAll();
         if (lecture.day == 'firstDay') {
             let firstDayLectures = []
-            for (const lecture of this.lectures) {
+            for (const lecture of allLectures) {
                 if (lecture.day == 'firstDay') {
                     firstDayLectures.push(lecture)
                 }
@@ -48,11 +51,11 @@ export default class LecturesUseCase {
                 }
             }
 
-            this.lectures.push(lecture)
+            this.lecturesRepository.create(lecture)
         } else if (lecture.day == 'secondDay'){
             // Same logic that for the first day only changes the last hour for the conferences
             let secondDayLectures = []
-            for (const lecture of this.lectures) {
+            for (const lecture of allLectures) {
                 if (lecture.day == 'secondDay') {
                     secondDayLectures.push(lecture)
                 }
@@ -93,14 +96,14 @@ export default class LecturesUseCase {
                 }
             }
 
-            this.lectures.push(lecture)
+            this.lecturesRepository.create(lecture)
         }
 
         return lecture
     }
 
     getLectures() {
-        return this.lectures
+        return this.lecturesRepository.getAll()
     }
 }
 
