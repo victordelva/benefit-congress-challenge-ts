@@ -22,7 +22,7 @@ export class RoomAndTimeAssignerService {
 		});
 
 		for (const lastLecture of lastLectureByRoom) {
-			if (lectureConferenceDay.canHaveLectureAtWithDuration(lastLecture.endTime, newLecture.duration)) {
+			if (lectureConferenceDay.canHaveLectureWithTimeAndDuration(lastLecture.endTime, newLecture.duration)) {
 				newLecture.assignRoom(lastLecture.room);
 				newLecture.assignTime(lastLecture.endTime);
 				break;

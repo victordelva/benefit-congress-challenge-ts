@@ -2,7 +2,6 @@ import {RoomAndTimeAssignerService} from "../../../domain/services/RoomAndTimeAs
 import {LectureStub} from "../models/LectureStub";
 import {ConferenceDayFactory} from "../../../domain/models/ConferenceDay/ConferenceDay.factory";
 import {ConferenceDayStartTimeEnum} from "../../../domain/models/ConferenceDay/ConferenceDay.enum";
-import exp = require("node:constants");
 
 describe('AssignRoomAndTimeService ', () => {
 	let roomAssignerService: RoomAndTimeAssignerService;
