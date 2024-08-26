@@ -27,7 +27,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 

@@ -1,4 +1,14 @@
+import {ConferenceDayEnum} from "../models/ConferenceDay/ConferenceDay.enum";
+import {Lecture} from "../models/Lecture";
+
 export interface LecturesRepositoryInterface {
-		getAll(): Record<string, any>[];
-		create(lecture: Record<string, any>): Record<string, any>;
+		getAll(): Lecture[];
+
+		findBy({
+			day
+		}: {
+			day: ConferenceDayEnum
+		}): Lecture[];
+
+		create(lecture: Lecture): Lecture;
 }
