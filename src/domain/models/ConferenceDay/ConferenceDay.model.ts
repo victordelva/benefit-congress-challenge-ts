@@ -26,8 +26,8 @@ export class ConferenceDayModel {
 		return this.isFirstDay() ? new Time(ConferenceDayEndTimeEnum.FIRST_DAY) : new Time(ConferenceDayEndTimeEnum.SECOND_DAY);
 	}
 
-	catHaveLectureAtWithDuration(time: Time, duration: number) {
+	canHaveLectureAtWithDuration(time: Time, duration: number) {
 		const endTime = time.addMinutes(duration);
-		return endTime.isBiggerThan(this.endTime);
+		return !endTime.isBiggerThan(this.endTime);
 	}
 }

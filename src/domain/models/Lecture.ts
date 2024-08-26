@@ -44,4 +44,8 @@ export class Lecture {
 	assignTime(time: Time) {
 		this.startAt = time;
 	}
+
+	get endTime() {
+		return this.startAt.addMinutes(this.duration);
+	}
 }
