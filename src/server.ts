@@ -1,5 +1,5 @@
-import CongressController from './controllers/congress.controller'
-import CongressService from './service/congress.service'
+import LecturesController from './controllers/lectures.controller'
+import LecturesUseCase from './application/usecases/lectures.useCase'
 import * as express from 'express'
 import bodyParser = require('body-parser');
 
@@ -7,13 +7,13 @@ export function createServer(done) {
     console.info(`Starting API on 5050...`)
 
     const app = express()
-    const congressService = new CongressService()
+    const createLectureUseCase = new LecturesUseCase()
 
-    const congressController = new CongressController(congressService);
+    const lecturesController = new LecturesController(createLectureUseCase);
 
     app.use(bodyParser.json());
-    app.get("/lectures", congressController.findAll())
-    app.post('/lectures', congressController.create())
+    app.get("/lectures", lecturesController.findAll())
+    app.post('/lectures', lecturesController.create())
 
     const server = app.listen(5050, () => {
         done()

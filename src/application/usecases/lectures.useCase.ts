@@ -1,4 +1,4 @@
-export default class CongressService {
+export default class LecturesUseCase {
     constructor(private lectures: Record<string, any>[] = []) {}
 
     createLecture(lecture) {

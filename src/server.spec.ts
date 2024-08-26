@@ -322,4 +322,47 @@ describe('Lectures Management', () => {
     expect(res.statusCode).toBe(200)
     expect(res.body).toMatchObject([createdLecture1, createdLecture2, createdLecture3])
   })
+
+  it.skip('Should create lectures on the correct room independently of the order of the lecturesDay', async () => {
+    let lecture1room1 = {
+      title: 'Lecture 1',
+      description: 'Some description',
+      speakers: ['John Doe'],
+      duration: 360, // 6 hours
+      day: "firstDay"
+    }
+    const res1 = await request(app)
+      .post('/lectures').send(lecture1room1)
+    expect(res1.statusCode).toBe(201)
+    let createdLecture1 = res1.body
+    expect(createdLecture1.room).toEqual(1)
+
+    let lecture2room1 = {
+      title: 'Lecture 1 second day',
+      description: 'Some description',
+      speakers: ['John Doe'],
+      duration: 240, // 4 hours
+      day: "secondDay"
+    }
+    const res2 = await request(app)
+      .post('/lectures').send(lecture2room1)
+    expect(res2.statusCode).toBe(201)
+    let createdLecture2 = res1.body
+    expect(createdLecture2.room).toEqual(1)
+    expect(createdLecture2.day).toEqual('secondDay')
+
+    let lecture1room2 = {
+      title: 'Lecture 2 first day room2',
+      description: 'Some description',
+      speakers: ['John Doe'],
+      duration: 240, // 4 hours
+      day: "firstDay"
+    }
+    const res3 = await request(app)
+      .post('/lectures').send(lecture1room2)
+    expect(res3.statusCode).toBe(201)
+    let createdLecture3 = res3.body
+    expect(createdLecture3.room).toEqual(2)
+    expect(createdLecture3.day).toEqual('firstDay')
+  })
 })
