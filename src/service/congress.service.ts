@@ -27,7 +27,7 @@ export default class CongressService {
                 lecture.startAt = "10:00"
             } else {
                 // Check if the new lecture fits into the room
-                var roomLastLecture = roomLectures[roomLectures.length-1]
+                let roomLastLecture = roomLectures[roomLectures.length-1]
                 let startAt = new Date()
                 startAt.setHours(roomLastLecture.startAt.substring(0,2), roomLastLecture.startAt.substring(3,5), 0)
                 let endAt = new Date()
@@ -36,7 +36,7 @@ export default class CongressService {
                 let newEndAt = new Date()
                 newEndAt.setTime(endAt.getTime() + (lecture.duration * 60 * 1000));
 
-                var lastHourOfDay = new Date()
+                let lastHourOfDay = new Date()
                 lastHourOfDay.setHours(18, 0, 0)
                 if (newEndAt <= lastHourOfDay) {
                     lecture.room = lastRoom
@@ -73,7 +73,7 @@ export default class CongressService {
                 lecture.room = lastRoom;
                 lecture.startAt = "10:00"
             } else {
-                var roomLastLecture = roomLectures[roomLectures.length-1]
+                let roomLastLecture = roomLectures[roomLectures.length-1]
                 let startAt = new Date()
                 startAt.setHours(roomLastLecture.startAt.substring(0,2), roomLastLecture.startAt.substring(3,5), 0)
                 let endAt = new Date()
@@ -82,7 +82,7 @@ export default class CongressService {
                 let newEndAt = new Date()
                 newEndAt.setTime(endAt.getTime() + (lecture.duration * 60 * 1000));
 
-                var lastHourOfDay = new Date()
+                let lastHourOfDay = new Date()
                 lastHourOfDay.setHours(15, 0, 0)
                 if (newEndAt <= lastHourOfDay) {
                     lecture.room = lastRoom
