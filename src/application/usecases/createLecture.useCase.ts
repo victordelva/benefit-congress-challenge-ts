@@ -1,9 +1,9 @@
 import {LecturesRepositoryInterface} from "../../domain/repositories/LecturesRepository.interface";
 
-export default class LecturesUseCase {
+export default class CreateLectureUseCase {
     constructor(private lecturesRepository: LecturesRepositoryInterface) {}
 
-    createLecture(lecture) {
+    execute(lecture) {
         const allLectures = this.lecturesRepository.getAll();
         if (lecture.day == 'firstDay') {
             let firstDayLectures = []
@@ -100,10 +100,6 @@ export default class LecturesUseCase {
         }
 
         return lecture
-    }
-
-    getLectures() {
-        return this.lecturesRepository.getAll()
     }
 }
 
