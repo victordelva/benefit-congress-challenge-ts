@@ -2,6 +2,7 @@ import {RoomAndTimeAssignerService} from "../../../domain/services/RoomAndTimeAs
 import {LectureStub} from "../models/LectureStub";
 import {ConferenceDayFactory} from "../../../domain/models/ConferenceDay/ConferenceDay.factory";
 import {ConferenceDayStartTimeEnum} from "../../../domain/models/ConferenceDay/ConferenceDay.enum";
+import exp = require("node:constants");
 
 describe('AssignRoomAndTimeService ', () => {
 	let roomAssignerService: RoomAndTimeAssignerService;
@@ -35,7 +36,7 @@ describe('AssignRoomAndTimeService ', () => {
 		expect(lecture.room).toBe(2);
 	});
 
-	it("should assign room 1 to the third lecture", () => {
+	it("Should assign room 1 to the third lecture", () => {
 		const lecture1 = LectureStub.random({
 			startAt: ConferenceDayFactory.firstDay().startTime,
 			day: ConferenceDayFactory.firstDay(),
@@ -60,5 +61,22 @@ describe('AssignRoomAndTimeService ', () => {
 			day: ConferenceDayFactory.firstDay(),
 		}));
 		expect(lecture3.room).toBe(1);
+	});
+
+	it('Should create the second lecture in the same room for the first day', () => {
+		const lecture1 = roomAssignerService.execute([],LectureStub.random({
+			day: ConferenceDayFactory.firstDay(),
+			duration: 60,
+		}));
+
+		expect(lecture1.room).toBe(1);
+		expect(lecture1.startAt.toString()).toBe("10:00");
+
+		const lecture2 = roomAssignerService.execute([lecture1],LectureStub.random({
+			day: ConferenceDayFactory.firstDay(),
+			duration: 120,
+		}));
+		expect(lecture2.room).toBe(1);
+		expect(lecture2.startAt.toString()).toBe("11:00");
 	});
 });
