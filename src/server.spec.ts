@@ -1,12 +1,13 @@
 import * as request from 'supertest'
 import {createServer} from './server'
+import {configureDependencies} from "./infrastructure/dependencies";
 
 describe('Lectures Management', () => {
   let server
   let app
 
   beforeEach((done) => {
-    const result = createServer(done)
+    const result = createServer(configureDependencies(),done)
     app = result.app
     server = result.server
   })
