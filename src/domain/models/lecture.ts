@@ -37,15 +37,15 @@ export class Lecture {
 		this.startAt = startAt;
 	}
 
+	get endTime() {
+		return this.startAt.addMinutes(this.duration);
+	}
+
 	assignRoom(room: number) {
 		this.room = room;
 	}
 
 	assignTime(time: Time) {
 		this.startAt = time;
-	}
-
-	get endTime() {
-		return this.startAt.addMinutes(this.duration);
 	}
 }
