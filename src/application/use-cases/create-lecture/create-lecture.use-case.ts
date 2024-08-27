@@ -13,10 +13,10 @@ export default class CreateLectureUseCase {
     execute(lectureRequest: CreateLectureRequest): CreateLectureResponse {
         let lecture = mapToLecture(lectureRequest);
 
-        const currentDayLectures = this.lecturesRepository.findBy({
+        const dayLectures = this.lecturesRepository.findBy({
             day: lecture.day.value
         });
-        lecture = this.roomAssigner.execute(currentDayLectures, lecture);
+        lecture = this.roomAssigner.execute(dayLectures, lecture);
 
         this.lecturesRepository.create(lecture)
 

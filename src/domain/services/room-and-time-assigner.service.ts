@@ -3,6 +3,7 @@ import {Lecture} from "../models/lecture";
 export class RoomAndTimeAssignerService {
 	execute(previousLectures: Lecture[], newLecture: Lecture): Lecture {
 		const lectureConferenceDay = newLecture.day;
+
 		if (!previousLectures.length) {
 			newLecture.assignRoom(1);
 			newLecture.assignTime(lectureConferenceDay.startTime);
@@ -28,6 +29,7 @@ export class RoomAndTimeAssignerService {
 				break;
 			}
 		}
+
 		if (!newLecture.room) {
 			newLecture.assignRoom(roomLectures[roomLectures.length -1] + 1);
 			newLecture.assignTime(lectureConferenceDay.startTime);
