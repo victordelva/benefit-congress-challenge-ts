@@ -36,11 +36,9 @@ describe('CreateLectureUseCase - Integration Test', () => {
             speakers: expect.any(Array),
             day: expect.any(String),
             duration: expect.any(Number),
-            room: expect.any(Number),
-            startAt: expect.any(String),
+            room: 1,
+            startAt: "10:00",
         }));
-        expect(lectureResponse.room).toBe(1);
-        expect(lectureResponse.startAt).toBe('10:00');
 
         const lectures = lecturesRepository.getAll();
         expect(lectures).toHaveLength(1);
