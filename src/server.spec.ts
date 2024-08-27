@@ -1,12 +1,13 @@
 import * as request from 'supertest'
 import {createServer} from './server'
+import {configureDependencies} from "./infrastructure/config/dependencies";
 
 describe('Lectures Management', () => {
   let server
   let app
 
   beforeEach((done) => {
-    const result = createServer(done)
+    const result = createServer(configureDependencies(),done)
     app = result.app
     server = result.server
   })
@@ -16,7 +17,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create the first lecture for the first day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -27,7 +28,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
@@ -39,7 +40,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create the second lecture in the same room for the first day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -50,11 +51,11 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
-    let lecture2 = {
+    const lecture2 = {
       title: 'Lecture 2',
       description: 'Some description 2',
       speakers: ['Mike Doe'],
@@ -65,7 +66,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture2)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture2 = res.body
+    const createdLecture2 = res.body
     expect(createdLecture2.room).toEqual(1)
     expect(createdLecture2.startAt).toEqual('11:00')
 
@@ -77,7 +78,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create the next lecture in a new room for the first day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -88,11 +89,11 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
-    let lecture2 = {
+    const lecture2 = {
       title: 'Lecture 2',
       description: 'Some description',
       speakers: ['Jane Doe'],
@@ -103,7 +104,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture2)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture2 = res.body
+    const createdLecture2 = res.body
     expect(createdLecture2.room).toEqual(2)
     expect(createdLecture2.startAt).toEqual('10:00')
 
@@ -115,7 +116,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create lectures in the room gaps for the first day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -126,13 +127,13 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
     // The lecture will end at 16:00 so there is a gap of 2h until the end of the day 18:00
 
-    let lecture2 = {
+    const lecture2 = {
       title: 'Lecture 2',
       description: 'Some description',
       speakers: ['Jane Doe'],
@@ -143,12 +144,11 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture2)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture2 = res.body
+    const createdLecture2 = res.body
     expect(createdLecture2.room).toEqual(2) // In a new room
     expect(createdLecture2.startAt).toEqual('10:00')
 
-
-    let lecture3 = {
+    const lecture3 = {
       title: 'Lecture 3',
       description: 'Some description',
       speakers: ['Jane Doe'],
@@ -159,7 +159,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture3)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture3 = res.body
+    const createdLecture3 = res.body
     expect(createdLecture3.room).toEqual(1) // FIXME the lecture should be placed into the room 1
 
     res = await request(app)
@@ -170,7 +170,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create the first lecture for the second day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -181,7 +181,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
@@ -193,7 +193,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create the second lecture in the same room for the second day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -204,11 +204,11 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
-    let lecture2 = {
+    const lecture2 = {
       title: 'Lecture 2',
       description: 'Some description 2',
       speakers: ['Mike Doe'],
@@ -219,7 +219,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture2)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture2 = res.body
+    const createdLecture2 = res.body
     expect(createdLecture2.room).toEqual(1)
     expect(createdLecture2.startAt).toEqual('12:00')
 
@@ -231,7 +231,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create the next lecture in a new room for the second day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -242,7 +242,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
@@ -269,7 +269,7 @@ describe('Lectures Management', () => {
   })
 
   it('Should create lectures in the room gaps for the second day', async () => {
-    let lecture = {
+    const lecture = {
       title: 'Lecture 1',
       description: 'Some description',
       speakers: ['John Doe'],
@@ -280,13 +280,13 @@ describe('Lectures Management', () => {
       .post('/lectures').send(lecture)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture1 = res.body
+    const createdLecture1 = res.body
     expect(createdLecture1.room).toEqual(1)
     expect(createdLecture1.startAt).toEqual('10:00')
 
     // The lecture will end at 14:00 so there is a gap of 1h until the end of the day 15:00
 
-    let lecture2 = {
+    const lecture2 = {
       title: 'Lecture 2',
       description: 'Some description',
       speakers: ['Jane Doe'],
@@ -297,12 +297,12 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture2)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture2 = res.body
+    const createdLecture2 = res.body
     expect(createdLecture2.room).toEqual(2) // In a new room
     expect(createdLecture2.startAt).toEqual('10:00')
 
 
-    let lecture3 = {
+    const lecture3 = {
       title: 'Lecture 3',
       description: 'Some description',
       speakers: ['Jane Doe'],
@@ -313,7 +313,7 @@ describe('Lectures Management', () => {
         .post('/lectures').send(lecture3)
 
     expect(res.statusCode).toBe(201)
-    let createdLecture3 = res.body
+    const createdLecture3 = res.body
     expect(createdLecture3.room).toEqual(1) // FIXME the lecture should be placed into the room 1
 
     res = await request(app)
@@ -321,5 +321,54 @@ describe('Lectures Management', () => {
 
     expect(res.statusCode).toBe(200)
     expect(res.body).toMatchObject([createdLecture1, createdLecture2, createdLecture3])
+  })
+
+  it('Should create lectures on the correct room independently of the order of the lecturesDay', async () => {
+    const lecture1room1 = {
+      title: 'Lecture 1',
+      description: 'Some description',
+      speakers: ['John Doe'],
+      duration: 360, // 6 hours
+      day: "firstDay"
+    }
+    let res = await request(app)
+      .post('/lectures').send(lecture1room1)
+    expect(res.statusCode).toBe(201)
+    const createdLecture1 = res.body
+    expect(createdLecture1.room).toEqual(1)
+
+    let lecture2room1 = {
+      title: 'Lecture 1 second day',
+      description: 'Some description',
+      speakers: ['John Doe'],
+      duration: 240, // 4 hours
+      day: "secondDay"
+    }
+    res = await request(app)
+      .post('/lectures').send(lecture2room1)
+    expect(res.statusCode).toBe(201)
+    let createdLecture2 = res.body
+    expect(createdLecture2.room).toEqual(1)
+    expect(createdLecture2.day).toEqual('secondDay')
+
+    const lecture1room2 = {
+      title: 'Lecture 2 first day room2',
+      description: 'Some description',
+      speakers: ['John Doe'],
+      duration: 240, // 4 hours
+      day: "firstDay"
+    }
+    res = await request(app)
+      .post('/lectures').send(lecture1room2)
+    expect(res.statusCode).toBe(201)
+    const createdLecture3 = res.body
+    expect(createdLecture3.room).toEqual(2)
+    expect(createdLecture3.day).toEqual('firstDay')
+  })
+
+  it('should return error validating body', async () => {
+    const res = await request(app)
+      .post('/lectures').send({});
+    expect(res.statusCode).toBe(400);
   })
 })

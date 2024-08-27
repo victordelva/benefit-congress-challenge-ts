@@ -1,19 +1,13 @@
-import CongressController from './controllers/congress.controller'
-import CongressService from './service/congress.service'
 import * as express from 'express'
 import bodyParser = require('body-parser');
+import {configureRoutes} from "./infrastructure/config/routes";
 
-export function createServer(done) {
+export function createServer(dependencies, done: () => void) {
     console.info(`Starting API on 5050...`)
-
     const app = express()
-    const congressService = new CongressService()
-
-    const congressController = new CongressController(congressService);
-
     app.use(bodyParser.json());
-    app.get("/lectures", congressController.findAll())
-    app.post('/lectures', congressController.create())
+
+    configureRoutes(app, dependencies);
 
     const server = app.listen(5050, () => {
         done()
