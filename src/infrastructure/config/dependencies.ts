@@ -1,7 +1,7 @@
 import {LecturesRepositoryImpl} from "../persistance/lectures-repository.impl";
 import {RoomAndTimeAssignerService} from "../../domain/services/room-and-time-assigner.service";
-import CreateLectureUseCase from "../../application/usecases/createLecture/create-lecture.useCase";
-import GetAllLecturesUseCase from "../../application/usecases/getAllLectures/get-all-lectures.useCase";
+import CreateLectureUseCase from "../../application/usecases/create-lecture/create-lecture.use-case";
+import GetAllLecturesUseCase from "../../application/usecases/get-all-lectures/get-all-lectures.use-case";
 import LecturesController from "../controllers/lectures.controller";
 
 export const configureDependencies = () => {
