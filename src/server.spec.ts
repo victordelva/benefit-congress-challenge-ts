@@ -365,4 +365,10 @@ describe('Lectures Management', () => {
     expect(createdLecture3.room).toEqual(2)
     expect(createdLecture3.day).toEqual('firstDay')
   })
+
+  it('should return error validating body', async () => {
+    const res = await request(app)
+      .post('/lectures').send({});
+    expect(res.statusCode).toBe(400);
+  })
 })

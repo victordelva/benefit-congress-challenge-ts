@@ -1,4 +1,6 @@
+import {validateCreateLecture} from "../controllers/lectures.validator";
+
 export const configureRoutes = (app, { lecturesController }) => {
 	app.get('/lectures', lecturesController.findAll());
-	app.post('/lectures', lecturesController.create());
+	app.post('/lectures', validateCreateLecture, lecturesController.create());
 };
