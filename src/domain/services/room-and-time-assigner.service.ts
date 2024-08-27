@@ -1,4 +1,4 @@
-import {Lecture} from "../models/Lecture";
+import {Lecture} from "../models/lecture";
 
 export class RoomAndTimeAssignerService {
 	execute(previousLectures: Lecture[], newLecture: Lecture): Lecture {

@@ -1,12 +1,12 @@
-import {Speaker} from "./Speaker";
-import {ConferenceDayModel} from "./ConferenceDay/ConferenceDay.model";
-import {Time} from "./Time";
+import {Speaker} from "./speaker";
+import {ConferenceDay} from "./conference-day/conference-day";
+import {Time} from "./time";
 
 export class Lecture {
 	title: string;
 	description: string;
 	speakers: Speaker[];
-	day: ConferenceDayModel;
+	day: ConferenceDay;
 	duration: number;
 	room?: number;
 	startAt: Time;
@@ -23,7 +23,7 @@ export class Lecture {
 		title: string;
 		description: string;
 		speakers: Speaker[];
-		day: ConferenceDayModel;
+		day: ConferenceDay;
 		duration: number;
 		room?: number;
 		startAt: Time;

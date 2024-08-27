@@ -1,5 +1,5 @@
-import {Lecture} from "../../../domain/models/Lecture";
-import {GetAllLecturesResponse} from "./getAllLectures.response";
+import {Lecture} from "../../../domain/models/lecture";
+import {GetAllLecturesResponse} from "./get-all-lectures.response";
 
 
 export function mapToGetLectureResponse (lectures: Lecture[]): GetAllLecturesResponse {

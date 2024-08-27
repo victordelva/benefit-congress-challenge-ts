@@ -1,5 +1,5 @@
-import {Time} from "../../../../domain/models/Time";
-import {ConferenceDayFactory} from "../../../../domain/models/ConferenceDay/ConferenceDay.factory";
+import {Time} from "../../../../domain/models/time";
+import {ConferenceDayFactory} from "../../../../domain/models/conference-day/conference-day.factory";
 
 describe('Conference Day ', () => {
 	it('should be created and know if it can handle more lectures', () => {

@@ -1,5 +1,5 @@
-import CreateLectureUseCase from "../../application/usecases/createLecture/createLecture.useCase";
-import GetAllLecturesUseCase from "../../application/usecases/getAllLectures/getAllLectures.useCase";
+import CreateLectureUseCase from "../../application/usecases/createLecture/create-lecture.useCase";
+import GetAllLecturesUseCase from "../../application/usecases/getAllLectures/get-all-lectures.useCase";
 
 export default class LecturesController {
   constructor(

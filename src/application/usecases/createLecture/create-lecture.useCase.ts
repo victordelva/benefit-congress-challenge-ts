@@ -1,8 +1,8 @@
-import {LecturesRepositoryInterface} from "../../../domain/repositories/LecturesRepository.interface";
-import {CreateLectureRequest} from "./createLecture.request";
-import {mapToCreateLectureResponse, mapToLecture} from "./createLecture.mapper";
-import {RoomAndTimeAssignerService} from "../../../domain/services/RoomAndTimeAssigner.service";
-import {CreateLectureResponse} from "./createLecture.response";
+import {LecturesRepositoryInterface} from "../../../domain/repositories/lectures-repository.interface";
+import {CreateLectureRequest} from "./create-lecture.request";
+import {mapToCreateLectureResponse, mapToLecture} from "./create-lecture.mapper";
+import {RoomAndTimeAssignerService} from "../../../domain/services/room-and-time-assigner.service";
+import {CreateLectureResponse} from "./create-lecture.response";
 
 export default class CreateLectureUseCase {
     constructor(

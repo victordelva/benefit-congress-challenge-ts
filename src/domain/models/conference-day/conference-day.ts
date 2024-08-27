@@ -1,7 +1,7 @@
-import {ConferenceDayEndTimeEnum, ConferenceDayEnum, ConferenceDayStartTimeEnum} from "./ConferenceDay.enum";
-import {Time} from "../Time";
+import {ConferenceDayEndTimeEnum, ConferenceDayEnum, ConferenceDayStartTimeEnum} from "./conference-day.enum";
+import {Time} from "../time";
 
-export class ConferenceDayModel {
+export class ConferenceDay {
 	value: ConferenceDayEnum;
 
 	constructor({ value }: {

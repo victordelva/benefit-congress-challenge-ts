@@ -1,6 +1,6 @@
-import {LecturesRepositoryInterface} from "../../domain/repositories/LecturesRepository.interface";
-import {Lecture} from "../../domain/models/Lecture";
-import {ConferenceDayEnum} from "../../domain/models/ConferenceDay/ConferenceDay.enum";
+import {LecturesRepositoryInterface} from "../../domain/repositories/lectures-repository.interface";
+import {Lecture} from "../../domain/models/lecture";
+import {ConferenceDayEnum} from "../../domain/models/conference-day/conference-day.enum";
 
 export class LecturesRepositoryImpl  implements LecturesRepositoryInterface {
 	private lectures: Lecture[];

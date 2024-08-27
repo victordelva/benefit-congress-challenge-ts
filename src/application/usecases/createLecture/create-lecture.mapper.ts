@@ -1,10 +1,10 @@
-import {CreateLectureRequest} from "./createLecture.request";
-import {Lecture} from "../../../domain/models/Lecture";
-import {Speaker} from "../../../domain/models/Speaker";
-import {ConferenceDayEnum} from "../../../domain/models/ConferenceDay/ConferenceDay.enum";
-import {ConferenceDayFactory} from "../../../domain/models/ConferenceDay/ConferenceDay.factory";
-import {Time} from "../../../domain/models/Time";
-import {CreateLectureResponse} from "./createLecture.response";
+import {CreateLectureRequest} from "./create-lecture.request";
+import {Lecture} from "../../../domain/models/lecture";
+import {Speaker} from "../../../domain/models/speaker";
+import {ConferenceDayEnum} from "../../../domain/models/conference-day/conference-day.enum";
+import {ConferenceDayFactory} from "../../../domain/models/conference-day/conference-day.factory";
+import {Time} from "../../../domain/models/time";
+import {CreateLectureResponse} from "./create-lecture.response";
 
 export function mapToLecture (lecture: CreateLectureRequest): Lecture {
 		return new Lecture({

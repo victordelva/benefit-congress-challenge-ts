@@ -1,7 +1,7 @@
-import {RoomAndTimeAssignerService} from "../../../domain/services/RoomAndTimeAssigner.service";
-import {LectureStub} from "../models/LectureStub";
-import {ConferenceDayFactory} from "../../../domain/models/ConferenceDay/ConferenceDay.factory";
-import {ConferenceDayStartTimeEnum} from "../../../domain/models/ConferenceDay/ConferenceDay.enum";
+import {RoomAndTimeAssignerService} from "../../../domain/services/room-and-time-assigner.service";
+import {LectureStub} from "../models/lecture-stub";
+import {ConferenceDayFactory} from "../../../domain/models/conference-day/conference-day.factory";
+import {ConferenceDayStartTimeEnum} from "../../../domain/models/conference-day/conference-day.enum";
 
 describe('AssignRoomAndTimeService ', () => {
 	let roomAssignerService: RoomAndTimeAssignerService;

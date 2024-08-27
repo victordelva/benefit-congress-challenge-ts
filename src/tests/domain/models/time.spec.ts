@@ -1,4 +1,4 @@
-import {Time} from "../../../domain/models/Time";
+import {Time} from "../../../domain/models/time";
 
 describe('Time Model ', () => {
 	it('should create a valid time a compare time correctly', () => {

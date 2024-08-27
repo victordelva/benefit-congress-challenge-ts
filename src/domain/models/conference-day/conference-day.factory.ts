@@ -1,15 +1,15 @@
-import {ConferenceDayModel} from "./ConferenceDay.model";
-import {ConferenceDayEnum} from "./ConferenceDay.enum";
+import {ConferenceDay} from "./conference-day";
+import {ConferenceDayEnum} from "./conference-day.enum";
 
 export class ConferenceDayFactory {
 	static firstDay() {
-		return new ConferenceDayModel({
+		return new ConferenceDay({
 			value: ConferenceDayEnum.FIRST_DAY,
 		});
 	}
 
 	static secondDay() {
-		return new ConferenceDayModel({
+		return new ConferenceDay({
 			value: ConferenceDayEnum.SECOND_DAY,
 		});
 	}

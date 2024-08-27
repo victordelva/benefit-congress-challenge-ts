@@ -1,5 +1,5 @@
-import {ConferenceDayEnum} from "../models/ConferenceDay/ConferenceDay.enum";
-import {Lecture} from "../models/Lecture";
+import {ConferenceDayEnum} from "../models/conference-day/conference-day.enum";
+import {Lecture} from "../models/lecture";
 
 export interface LecturesRepositoryInterface {
 		getAll(): Lecture[];

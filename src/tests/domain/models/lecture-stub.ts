@@ -1,7 +1,7 @@
-import {Lecture} from "../../../domain/models/Lecture";
-import {ConferenceDayFactory} from "../../../domain/models/ConferenceDay/ConferenceDay.factory";
-import {ConferenceDayModel} from "../../../domain/models/ConferenceDay/ConferenceDay.model";
-import {Time} from "../../../domain/models/Time";
+import {Lecture} from "../../../domain/models/lecture";
+import {ConferenceDayFactory} from "../../../domain/models/conference-day/conference-day.factory";
+import {ConferenceDay} from "../../../domain/models/conference-day/conference-day";
+import {Time} from "../../../domain/models/time";
 
 export class LectureStub {
 	static random({
@@ -12,7 +12,7 @@ export class LectureStub {
 	}:{
 		duration?: number;
 		room?: number;
-		day?: ConferenceDayModel;
+		day?: ConferenceDay;
 		startAt?: Time;
 	} = {}): Lecture {
 		return new Lecture({
